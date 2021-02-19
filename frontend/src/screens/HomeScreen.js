@@ -1,38 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import React, { useEffect } from 'react'
 import Product from '../components/Product';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { listProducts } from '../actions/productActions';
 
 
 
 export default function HomeScreen() {
-    /* setup hooks used to determine the state of the site when you first load the page */
-    const [products, setProductes] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const dispatch = useDispatch()
+    const productList =  useSelector(state => state.productList);
+    const { loading, error, products } = productList;
     useEffect(()=>{
-        /* attempt to load data from back end */
-        const fetchData = async () =>{
-            /* set loading to true while data is being loaded
-                and then back to false once data is retrived 
-            */
-            try{
-                setLoading(true);
-                const { data } = await axios.get('/api/products');
-                setLoading(false);
-                setProductes(data);
-            } catch(err){
-                /* if request fails and there is an error we catch it and load that error */
-                setError(err.message);
-                setLoading(false);
-            }
-           
-        };
-        fetchData();
+       dispatch(listProducts());
     }, []);
-    /* first i check if it is eather loading or there is an error, if there is neither then i map out
-    the product data */
     return (
         <div>
             {loading? <LoadingBox /> 
