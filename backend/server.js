@@ -1,7 +1,16 @@
 import express from 'express';
+import mongoose from 'mongoose';
+/* mongoose is used to connect to mongo database */
 import data from './data.js'
+import userRouter from './routers/userRouter.js';
 
 const app = express();
+/* making a mongoDB */
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+})
 
 /* req is short for request and res is for responce */
 
@@ -17,10 +26,14 @@ app.get('/api/products/:id', (req, res) => {
 app.get('/api/products', (req,res) =>{
     res.send(data.products);
 });
-
+app.use('/api/users', userRouter);
 app.get('/', (req, res) =>{
     res.send('Server is ready');
 });
+
+app.use((err, req, res, next) =>{
+  res.status(500).send({message: err.message});
+})
 const port = process.eventNames.PORT || 5000;
 app.listen(5000, ()=>{
     console.log(`Serve at http://localhost:${port}`)
