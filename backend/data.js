@@ -16,7 +16,6 @@ const data={
     ],
     products:[
         {
-            _id:'1',
             name: 'cool shirt',
             category:'Shirts',
             image:'/images/p1.jpg',
@@ -28,7 +27,6 @@ const data={
             description: 'high quality product'
         },
         {
-            _id:'2',
             name: 'less cool shirt',
             category:'Shirts',
             image:'/images/p2.jpg',
@@ -40,7 +38,6 @@ const data={
             description: 'high quality product'
         },
         {
-            _id:'3',
             name: 'third shirt',
             category:'Shirts',
             image:'/images/p3.jpg',
@@ -52,7 +49,6 @@ const data={
             description: 'high quality product'
         },
         {
-            _id:'4',
             name: 'math is fun pants',
             category:'Pants',
             image:'/images/p4.jpg',
@@ -64,7 +60,6 @@ const data={
             description: 'high quality product'
         },
         {
-            _id:'5',
             name: 'the last shirt',
             category:'Shirts',
             image:'/images/p5.jpg',
@@ -76,7 +71,6 @@ const data={
             description: 'high quality product'
         },
         {
-            _id:'6',
             name: 'normal Pants',
             category:'Pants',
             image:'/images/p6.jpg',
